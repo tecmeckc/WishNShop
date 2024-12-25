@@ -1,0 +1,39 @@
+.card {
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Lift card on hover */
+}
+
+.card-title {
+  color: #007bff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+@media (min-width: 768px) {
+  .card-img {
+    height: 250px; /* Taller image height on larger screens */
+  }
+}
+.btn-primary {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 767px) {
+  .card-img {
+    height: 150px; /* Shorter image height on smaller screens */
+  }
+}

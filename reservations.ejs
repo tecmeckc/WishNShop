@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <h1 class="text-center">All Reservations</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>User</th>
+        <th>Reserved At</th>
+        <th>Pickup Day</th>
+        <th>Pickup Time</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% reservations.forEach(reservation => { %>
+        <tr>
+          <td><%= reservation.productId.productName %></td>
+          <td><%= reservation.userId.username %></td>
+          <td><%= reservation.reservedAt.toLocaleString() %></td>
+          <td><%= reservation.pickupDay %></td>
+          <td><%= reservation.pickupTime %></td>
+          <td><%= reservation.quantity %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

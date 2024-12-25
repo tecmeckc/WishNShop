@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation Confirmation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Reservation Confirmed</h1>
+    <p><strong>Product Name:</strong> <%= reservation.productId.productName %></p>
+    <p><strong>Location:</strong> <%= reservation.location %></p>
+    <p><strong>Reservation Time:</strong> <%= reservation.reservationTime.toLocaleString() %></p>
+    <p><strong>Pickup Day:</strong> <%= reservation.pickupDay %></p>
+    <p><strong>Pickup Time:</strong> <%= reservation.pickupTime %></p>
+    <p><strong>Quantity Reserved:</strong> <%= reservation.quantity %></p>
+    <a href="/products" class="btn btn-primary">Back to Products</a>
+  </div>
+  <br><br><br><br><br><br><p style="margin-left: 5rem;"><b>Take a ScreenShot or a picture of it So that it becomes a proof!!</b></p>
+</body>
+</html>

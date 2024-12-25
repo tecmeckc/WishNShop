@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Product</title>
+  <!-- Optionally include Bootstrap CSS for styling -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Product</h1>
+    
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+      <!-- Product Name -->
+      <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" class="form-control" id="productName" name="productName" value="<%= product.productName %>" required>
+      </div>
+
+      <!-- Image URL -->
+      <div class="form-group">
+        <label for="image">Image URL:</label>
+        <input type="text" class="form-control" id="image" name="image" value="<%= product.image %>">
+      </div>
+
+      <!-- Price -->
+      <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+      </div>
+
+      <!-- Reviews -->
+      <h3>Reviews</h3>
+      <% product.Reviews.forEach((review, index) => { %>
+        <div class="form-group">
+          <label>User ID:</label>
+          <input type="text" class="form-control" name="reviewUserId[]" value="<%= review.userId %>">
+          
+          <label>Rating:</label>
+          <input type="number" class="form-control" name="reviewRating[]" min="1" max="5" value="<%= review.rating %>">
+          
+          <label>Comment:</label>
+          <input type="text" class="form-control" name="reviewComment[]" value="<%= review.comment %>">
+        </div>
+      <% }) %>
+
+      <!-- Availability -->
+      <h3>Availability</h3>
+      <% product.Availability.forEach((availability, index) => { %>
+        <div class="form-group">
+          <label>Location:</label>
+          <input type="text" class="form-control" name="location[]" value="<%= availability.location %>">
+
+          <label>Quantity:</label>
+          <input type="number" class="form-control" name="quantity[]" min="0" value="<%= availability.Quantity %>">
+        </div>
+      <% }) %>
+
+      <!-- Reservation -->
+      <h3>Reservation</h3>
+      <div class="form-group">
+        <label for="isReservable">Reservable:</label>
+        <input type="checkbox" id="isReservable" name="isReservable" <%= product.Reservation.isReservable ? "checked" : "" %>>
+      </div>
+      <div class="form-group">
+        <label for="reservationTime">Reservation Time:</label>
+        <input type="datetime-local" class="form-control" id="reservationTime" name="reservationTime" value="<%= product.Reservation.reservationTime ? product.Reservation.reservationTime.toISOString().slice(0, -1) : '' %>">
+      </div>
+      <div class="form-group">
+        <label for="maxReservations">Max Reservations:</label>
+        <input type="number" class="form-control" id="maxReservations" name="maxReservations" value="<%= product.Reservation.maxReservations %>">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
+    
+    <br>
+    <a href="/products" class="btn btn-secondary">Back to Products</a>
+  </div>
+</body>
+</html>

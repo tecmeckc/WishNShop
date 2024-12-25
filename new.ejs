@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-8 col-lg-6">
+      <h1 class="text-center">Add a New Product</h1>
+
+      <form action="/products" method="POST" class="p-4 border rounded bg-light">
+        <!-- Product Details -->
+        <div class="form-group">
+          <label for="productName">Product Name:</label>
+          <input type="text" id="productName" name="productName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Image URL:</label>
+          <input type="text" id="image" name="image" class="form-control" placeholder="e.g., image1.jpg or URL">
+        </div>
+        <div class="form-group">
+          <label for="Category" class="form-label">Category</label>
+          <input type="text" id="Category" name="Category" class="form-control" placeholder="e.g., Electronics, Furniture" required>
+        </div>
+        <div class="form-group">
+          <label for="About" class="form-label">About</label>
+          <textarea id="About" name="About" class="form-control" rows="4" placeholder="Add a short description about the product"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" class="form-control" required>
+        </div>
+
+        <!-- Reviews -->
+        <h3>Reviews</h3>
+        <div id="reviews">
+          <div class="review form-group">
+            <label for="reviewUserId">User ID:</label>
+            <input type="text" name="reviewUserId[]" class="form-control" placeholder="e.g., 615f1a2e1c4d88a1eac7b1a3">
+            
+            <label for="reviewRating">Rating:</label>
+            <input type="number" name="reviewRating[]" class="form-control" min="1" max="5">
+            
+            <label for="reviewComment">Comment:</label>
+            <input type="text" name="reviewComment[]" class="form-control" placeholder="Comment">
+          </div>
+        </div>
+        <button type="button" onclick="addReview()" class="btn btn-secondary btn-sm mt-2">Add Another Review</button>
+
+        <!-- Availability -->
+        <h3 class="mt-4">Availability</h3>
+        <div id="availability">
+          <div class="location form-group">
+            <label for="location">Location:</label>
+            <input type="text" name="location[]" class="form-control" placeholder="Location, e.g., Connaught Place, New Delhi">
+            
+            <label for="quantity">Quantity:</label>
+            <input type="number" name="quantity[]" class="form-control" min="0" placeholder="Available Quantity">
+          </div>
+        </div>
+        <button type="button" onclick="addLocation()" class="btn btn-secondary btn-sm mt-2">Add Another Location</button>
+
+        <!-- Reservation -->
+        <h3 class="mt-4">Reservation</h3>
+        <div class="form-check">
+          <input type="checkbox" id="isReservable" name="isReservable" class="form-check-input">
+          <label for="isReservable" class="form-check-label">Reservable</label>
+        </div>
+        <!-- <div class="form-group mt-2">
+          <label for="reservationTime">Reservation Time:</label>
+          <input type="datetime-local" id="reservationTime" name="reservationTime" class="form-control">
+        </div> -->
+        <div class="form-group">
+          <label for="maxReservations">Max Reservations:</label>
+          <input type="number" id="maxReservations" name="maxReservations" class="form-control" placeholder="e.g., 1">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Add Product</button>
+      </form>
+
+      <br>
+      <div class="text-center">
+        <a href="/products" class="btn btn-secondary">Go back</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function addReview() {
+      const reviewsDiv = document.getElementById("reviews");
+      const newReview = document.createElement("div");
+      newReview.classList.add("review", "form-group");
+      newReview.innerHTML = `
+        <label>User ID:</label>
+        <input type="text" name="reviewUserId[]" class="form-control" placeholder="User ID">
+        <label>Rating:</label>
+        <input type="number" name="reviewRating[]" class="form-control" min="1" max="5">
+        <label>Comment:</label>
+        <input type="text" name="reviewComment[]" class="form-control" placeholder="Comment">
+      `;
+      reviewsDiv.appendChild(newReview);
+    }
+
+    function addLocation() {
+      const availabilityDiv = document.getElementById("availability");
+      const newLocation = document.createElement("div");
+      newLocation.classList.add("location", "form-group");
+      newLocation.innerHTML = `
+        <label>Location:</label>
+        <input type="text" name="location[]" class="form-control" placeholder="Location">
+        <label>Quantity:</label>
+        <input type="number" name="quantity[]" class="form-control" min="0" placeholder="Available Quantity">
+      `;
+      availabilityDiv.appendChild(newLocation);
+    }
+  </script>
+</body>
+</html>
